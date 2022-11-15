@@ -21,9 +21,9 @@ function FormValidate(form) {
         for (let i = 0; i < _elements.length; i++) {
             const element = _elements[i];
             this.clearElementError(element);
-            const passwordMessage = element.dataset.password
-            const emailMessage = element.dataset.email
-            const lengthMessage = element.dataset.minLength
+            const passwordMessage = element.dataset.password;
+            const emailMessage = element.dataset.email;
+            const lengthMessage = element.dataset.minLength;
             if (passwordMessage) {
                 this.validPassword(passwordMessage);
             }
@@ -49,12 +49,14 @@ function FormValidate(form) {
 
     this.validLength = function (message) {
         const allInputElement = form.querySelectorAll("input");
-        const currentLength = allInputElement.length ;
+        const allInputLength = form.querySelector("input[data-min_length]")
+        const currentLength = allInputElement.length;
         const minLength = form.classList.minLength;
 
 
         if (currentLength<minLength){
             this.errorTemplate(minLength,message);
+            console.log(allInputLength);
         }
     }
 
