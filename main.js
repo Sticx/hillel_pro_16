@@ -23,7 +23,7 @@ function FormValidate(form) {
             this.clearElementError(element);
             const passwordMessage = element.dataset.password;
             const emailMessage = element.dataset.email;
-            const lengthMessage = element.dataset.min_length;
+            const lengthMessage = element.dataset.min_message;
             if (passwordMessage) {
                 this.validPassword(passwordMessage);
             }
