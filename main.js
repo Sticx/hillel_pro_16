@@ -7,14 +7,13 @@ function FormValidate(form) {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         this.checkFormElement();
-        // this.checkForm();
     })
     
     this.clearElementError = function (element) {
         const parent = element.closest(`.${_parentItemClass}`)
         if (parent !== null && parent.classList.contains(_errorWrapperClass)=== true){
             parent.classList.remove(_errorWrapperClass);
-            parent.querySelector(`${_errorItemClass}`).remove()
+            parent.querySelector(`.${_errorItemClass}`).remove()
         }
     }
 
@@ -24,27 +23,37 @@ function FormValidate(form) {
             this.clearElementError(element);
             const passwordMessage = element.dataset.password
             const emailMessage = element.dataset.email
+            const lengthMessage = element.dataset.minLength
             if (passwordMessage) {
                 this.validPassword(passwordMessage);
             }
             if (emailMessage){
                 this.validEmail(emailMessage);
             }
+            if (lengthMessage){
+                this.validLength(lengthMessage);
+            }
         }
-        // for (let j = 0; j<_elements.length;j++){
-        //     const elementsMail = _elements[j];
-        //     const mailMessage = elementsMail.dataset.email;
-        //     if (mailMessage){
-        //         this.onIput(mailMessage);
-        //     }
-        // }
     }
     this.validPassword = function (message) {
         const allPasswordElement = form.querySelectorAll("input[type='password']");
         const valueArr = Array.from(allPasswordElement).map(element => element.value);
 
         if (valueArr[0] !== valueArr[1]) {
-            allPasswordElement.forEach(item => this.errorTemplate(item, message))
+            allPasswordElement.forEach(item => this.errorTemplate(item, message));
+        }
+        // if (valueArr.length < 8|| valueArr==""){
+        //     this.errorTemplate(allPasswordElement,message);
+        // }
+    }
+
+    this.validLength = function (message) {
+        const allInputElement = form.querySelectorAll("input");
+        const currentLength = allInputElement.length ;
+        const minLength = form.classList.minLength;
+
+        if (currentLength<minLength){
+            this.errorTemplate(minLength,message);
         }
     }
 
