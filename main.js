@@ -52,6 +52,7 @@ function FormValidate(form) {
         const currentLength = allInputElement.length ;
         const minLength = form.classList.minLength;
 
+
         if (currentLength<minLength){
             this.errorTemplate(minLength,message);
         }
