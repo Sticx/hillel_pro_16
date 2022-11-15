@@ -59,8 +59,9 @@ function FormValidate(form) {
         console.log(currentLength)
 
         if (currentLength<+allInputLength){
-            this.errorTemplate(allInputLength,message);
+            // this.errorTemplate(currentLength,message);
             // console.log(allInputLength);
+            allInputElement.forEach(item =>this.errorTemplate(item,message))
         }
     }
 
