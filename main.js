@@ -9,10 +9,19 @@ function FormValidate(form) {
         this.checkFormElement();
         // this.checkForm();
     })
+    
+    this.clearElementError = function (element) {
+        const parent = element.closest(`.${_parentItemClass}`)
+        if (parent !== null && parent.classList.contains(_errorWrapperClass)=== true){
+            parent.classList.remove(_errorWrapperClass);
+            parent.querySelector(`${_errorItemClass}`).remove()
+        }
+    }
 
     this.checkFormElement = function () {
         for (let i = 0; i < _elements.length; i++) {
             const element = _elements[i];
+            this.clearElementError(element);
             const passwordMessage = element.dataset.password
             const emailMessage = element.dataset.email
             if (passwordMessage) {
@@ -45,8 +54,7 @@ function FormValidate(form) {
 
         // console.log(mail.value);
         if (!EMAIL_REGEXP.test(mail.value)){
-            mail.style.borderColor = 'red';
-           mail.forEach(item => this.errorTemplate(item,message));
+            this.errorTemplate(mail,message);
         }
 
     }
