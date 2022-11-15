@@ -44,9 +44,6 @@ function FormValidate(form) {
         if (valueArr[0] !== valueArr[1]) {
             allPasswordElement.forEach(item => this.errorTemplate(item, message));
         }
-        // if (valueArr.length < 8|| valueArr==""){
-        //     this.errorTemplate(allPasswordElement,message);
-        // }
     }
 
     this.validLength = function (message) {
