@@ -24,6 +24,10 @@ function FormValidate(form) {
             const passwordMessage = element.dataset.password;
             const emailMessage = element.dataset.email;
             const lengthMessage = element.dataset.min_message;
+            const reqMessage = element.dataset.req;
+            if (reqMessage){
+                this.validReq(reqMessage);
+            }
             if (passwordMessage) {
                 this.validPassword(passwordMessage);
             }
@@ -35,6 +39,15 @@ function FormValidate(form) {
                 // console.log(element.dataset)
             }
 
+        }
+    }
+    this.validReq = function (message) {
+        const allInputReq = form.querySelectorAll("input");
+        const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
+        const currentInputLength = Array.from(allInputReq).map(element => element.value.length);
+
+        if (allInputReq.includes(allInputProp) && currentInputLength==null||currentInputLength===""){
+            allInputReq.forEach(item => this.errorTemplate(item, message));
         }
     }
     this.validPassword = function (message) {
