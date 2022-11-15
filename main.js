@@ -54,7 +54,7 @@ function FormValidate(form) {
         // const allInputLength = form.querySelector("input[data-min_length]")
         const allInputLength = Array.from(allInputElement).map(element => element.dataset.min_length)
         const currentLength = Array.from(allInputElement).map(element => element.value.length);
-        const minLength = form.classList.minLength;
+        // const minLength = form.classList.minLength;
         console.log(allInputLength)
         console.log(currentLength)
 
