@@ -23,7 +23,7 @@ function FormValidate(form) {
             this.clearElementError(element);
             const passwordMessage = element.dataset.password;
             const emailMessage = element.dataset.email;
-            const lengthMessage = element.dataset.minLength;
+            const lengthMessage = element.dataset.min_length;
             if (passwordMessage) {
                 this.validPassword(passwordMessage);
             }
@@ -32,7 +32,9 @@ function FormValidate(form) {
             }
             if (lengthMessage){
                 this.validLength(lengthMessage);
+                // console.log(element.dataset)
             }
+
         }
     }
     this.validPassword = function (message) {
@@ -49,14 +51,16 @@ function FormValidate(form) {
 
     this.validLength = function (message) {
         const allInputElement = form.querySelectorAll("input");
-        const allInputLength = form.querySelector("input[data-min_length]")
-        const currentLength = allInputElement.length;
+        // const allInputLength = form.querySelector("input[data-min_length]")
+        const allInputLength = Array.from(allInputElement).map(element => element.dataset.min_length)
+        const currentLength = Array.from(allInputElement).map(element => element.value.length);
         const minLength = form.classList.minLength;
+        console.log(allInputLength)
+        console.log(currentLength)
 
-
-        if (currentLength<minLength){
-            this.errorTemplate(minLength,message);
-            console.log(allInputLength);
+        if (currentLength<+allInputLength){
+            this.errorTemplate(allInputLength,message);
+            // console.log(allInputLength);
         }
     }
 
