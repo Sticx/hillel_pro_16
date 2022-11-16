@@ -40,7 +40,7 @@ function FormValidate(form) {
 
         }
     }
-    this.validReq = function (message,element) {
+    this.validReq = function (message) {
         const allInputReq = form.querySelectorAll("input");
         const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
         const currentInputLength = Array.from(allInputReq).map(element => element.value);
@@ -49,9 +49,9 @@ function FormValidate(form) {
         console.log(allInputProp)
         console.log(currentInputLength)
 
-        if (currentInputLength===null||currentInputLength===""){
-            // allInputReq.forEach(message => this.errorTemplate(message, element));
-            this.errorTemplate(allInputReq,element)
+        if (currentInputLength===null||currentInputLength===''){
+            // allInputReq.forEach(element => this.errorTemplate(message, element));
+            this.errorTemplate(message,allInputReq)
         }
 
     }
