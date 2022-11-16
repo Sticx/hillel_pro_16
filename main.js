@@ -46,7 +46,10 @@ function FormValidate(form) {
         const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
         const currentInputLength = Array.from(allInputReq).map(element => element.value.length);
 
-        if (allInputReq.includes(allInputProp) && currentInputLength==null||currentInputLength===""){
+        console.log(allInputProp)
+        console.log(currentInputLength)
+
+        if (allInputProp && currentInputLength==null||currentInputLength===""){
             allInputReq.forEach(item => this.errorTemplate(item, message));
         }
     }
@@ -65,8 +68,6 @@ function FormValidate(form) {
         const allInputLength = Array.from(allInputElement).map(element => element.dataset.min_length)
         const currentLength = Array.from(allInputElement).map(element => element.value.length);
         // const minLength = form.classList.minLength;
-        console.log(allInputLength)
-        console.log(currentLength)
 
         if (currentLength<allInputLength){
             // this.errorTemplate(allInputLength,message);
