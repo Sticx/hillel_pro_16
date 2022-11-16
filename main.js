@@ -40,7 +40,7 @@ function FormValidate(form) {
 
         }
     }
-    this.validReq = function (message) {
+    this.validReq = function (element) {
         const allInputReq = form.querySelectorAll("input");
         const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
         const currentInputLength = Array.from(allInputReq).map(element => element.value);
@@ -51,7 +51,7 @@ function FormValidate(form) {
 
         if (currentInputLength===null||currentInputLength===''){
             // allInputReq.forEach(element => this.errorTemplate(message, element));
-            this.errorTemplate(message,allInputReq)
+            this.errorTemplate(allInputReq,element)
         }
 
     }
