@@ -42,14 +42,14 @@ function FormValidate(form) {
     }
     this.validReq = function (element) {
         const allInputReq = form.querySelectorAll("input");
-        const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
-        const currentInputLength = Array.from(allInputReq).map(element => element.value);
+        // const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
+        // const currentInputLength = Array.from(allInputReq).map(element => element.value);
 
         console.log(allInputReq)
-        console.log(allInputProp)
-        console.log(currentInputLength)
+        // console.log(allInputProp)
+        // console.log(currentInputLength)
 
-        if (currentInputLength===null||currentInputLength===''){
+        if (allInputReq.value===null||allInputReq.value===''){
             // allInputReq.forEach(element => this.errorTemplate(message, element));
             this.errorTemplate(allInputReq,element)
         }
