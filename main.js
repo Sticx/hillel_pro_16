@@ -27,6 +27,10 @@ function FormValidate(form) {
             const reqMessage = element.dataset.req;
             if (reqMessage){
                 this.validReq(reqMessage,element);
+
+                if (element.value===''){
+                    this.errorTemplate(element,reqMessage);
+                }
             }
             if (passwordMessage) {
                 this.validPassword(passwordMessage);
@@ -40,18 +44,25 @@ function FormValidate(form) {
 
         }
     }
-    this.validReq = function (element) {
-        const allInputReq = form.querySelectorAll("input");
-        // const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
-        // const currentInputLength = Array.from(allInputReq).map(element => element.value);
-
-        console.log(allInputReq)
-        // console.log(allInputProp)
-        // console.log(currentInputLength)
-
-        if (allInputReq.value===null||allInputReq.value===''){
-            // allInputReq.forEach(element => this.errorTemplate(message, element));
-            this.errorTemplate(allInputReq,element)
+    this.validReq = function (message) {
+        // const allInputReq = form.querySelectorAll("input");
+        // // const allInputProp = Array.from(allInputReq).map(element => element.dataset.req);
+        // // const currentInputLength = Array.from(allInputReq).map(element => element.value);
+        //
+        // console.log(typeof allInputReq.dataset)
+        // // console.log(allInputProp)
+        // // console.log(currentInputLength)
+        //
+        // if (allInputReq.value===''){
+        //     // allInputReq.forEach(element => this.errorTemplate(message, element));
+        //     this.errorTemplate(allInputReq,message)
+        // }
+        const inputCheck = form.querySelectorAll("input[type='checkbox']");
+        // const currenCheck = Array.from(inputCheck).map(element => element.value);
+        console.log(inputCheck)
+        // console.log(currenCheck)
+        if (!inputCheck.checked){
+            this.errorTemplate(inputCheck,message)
         }
 
     }
